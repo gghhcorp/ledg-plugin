@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ledg": {
+      "type": "http",
+      "url": "https://ledg.ca/api/mcp"
+    }
+  }
+}

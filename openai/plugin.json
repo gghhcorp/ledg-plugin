@@ -1,0 +1,106 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ledg",
+  "version": "1.0.0",
+  "description": "Canadian bookkeeping with your AI agents: ask about your books, save receipts and prepare categories and bank statement lines for you to confirm in Stage, and, with a separate settings permission you approve, update your business settings.",
+  "author": {
+    "name": "ledg",
+    "email": "info@ledg.ca",
+    "url": "https://ledg.ca"
+  },
+  "homepage": "https://ledg.ca/connect-ai",
+  "repository": "https://github.com/gghhcorp/ledg-plugin",
+  "license": "MIT",
+  "keywords": ["bookkeeping", "accounting", "canada", "gst", "receipts"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Ledg",
+        "shortDescription": "Canadian small business books",
+        "longDescription": "Ledg is bookkeeping for Canadian solo businesses and small corporations. Connect your Ledg account to ask about your books and to prepare the everyday work that keeps them current.\n\nAsk about sales, expenses, GST/HST and PST collected, account balances, transactions by date, amount or supplier, entries still waiting for a category, and upcoming tax deadlines. For a business that is not incorporated, you can also see a T2125 preview built from confirmed entries. Figures such as the T2125 preview are worked out from your books by fixed rules; they are not tax advice, and you or your accountant decide what to claim.\n\nPrepare work for your review: save receipts, invoices and bills so Ledg links each one to its bank transaction, record a purchase you made with your own money, add a receipt's supplier, tax and items to a transaction, set categories, record money between you and the business as personal, and add the lines of a bank or credit card statement after Ledg checks them against the opening and closing balances printed on it. Entries prepared this way wait in Stage, Ledg's review queue, and count toward your statements and sales tax totals only after you confirm them in Ledg. A saved receipt waits for its bank transaction and is linked to it when it arrives.\n\nWith a separate settings permission you approve on Ledg's consent screen, it can also update business settings such as province, year end and sales tax registration, and set a revenue goal. Those changes apply right away, as if you made them in Ledg.\n\nLedg cannot confirm an entry for you, move money, or file anything with the CRA or a province.\n\nRequires a Ledg account with AI agent access for your business.",
+        "developerName": "PPLETC WORKS INC.",
+        "category": "Finance",
+        "capabilities": [
+          "Answer questions about sales, expenses, and GST/HST and PST collected",
+          "Find transactions by date, amount or supplier",
+          "List upcoming tax deadlines",
+          "Save receipts and link them to their bank transactions",
+          "Set categories on entries waiting for your review",
+          "Add bank statement lines checked against the printed balances",
+          "Update business settings with your approval"
+        ],
+        "websiteURL": "https://ledg.ca",
+        "supportURL": "https://ledg.ca/contact",
+        "privacyPolicyURL": "https://ledg.ca/privacy",
+        "termsOfServiceURL": "https://ledg.ca/terms",
+        "defaultPrompt": [
+          "How much did my business sell last month?",
+          "Which transactions are still waiting for a category?",
+          "What tax deadlines are coming up?"
+        ],
+        "brandColor": "#49BB8E",
+        "brandColorDark": "#49BB8E",
+        "composerIcon": "./assets/ledg-icon.png",
+        "composerIconDark": "./assets/ledg-icon-dark.png",
+        "logo": "./assets/ledg-icon.png",
+        "logoDark": "./assets/ledg-icon-dark.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Answers a sales question from confirmed entries only.",
+              "prompt": "How much did Fireweed Demo Studio Inc. make in sales in August 2026, and how much GST/HST did it collect?",
+              "tools_triggered": "list_corporations, get_sales, get_sales_tax_collected",
+              "expected_behavior": "Gives Fireweed Demo Studio Inc.'s total sales for August 1 to 31, 2026 and the GST/HST collected on them, both from confirmed entries only, says that entries still waiting in Stage are not counted, and changes nothing in the books."
+            },
+            {
+              "description": "Lists entries that still need a category without changing anything.",
+              "prompt": "Which transactions in Fireweed Demo Studio Inc. are still waiting for a category?",
+              "tools_triggered": "list_corporations, find_uncategorized_transactions",
+              "expected_behavior": "Lists the entries waiting in Stage with no category, each with its date, supplier and amount, says how many there are in all, and offers to suggest categories. Nothing in the books changes."
+            },
+            {
+              "description": "Sets a category on one entry waiting in Stage.",
+              "prompt": "In Fireweed Demo Studio Inc., put the September 18, 2026 Uber charge under Travel.",
+              "tools_triggered": "list_corporations, find_transactions, list_categories, categorize_entries",
+              "expected_behavior": "Finds the $27.40 UBER *TRIP entry dated September 18, 2026, sets its category to Travel from Ledg's category list, and says the entry waits in Stage until the owner confirms it in Ledg. Its date and amount do not change."
+            },
+            {
+              "description": "Adds a receipt's details to a transaction already in the books.",
+              "prompt": "The September 12, 2026 Staples charge in Fireweed Demo Studio Inc. was printer paper and ink: subtotal $56.21, GST $2.81, PST $3.93, total $62.95. Add that to the transaction.",
+              "tools_triggered": "list_corporations, find_transactions, record_receipt_detail",
+              "expected_behavior": "Finds the $62.95 STAPLES #1234 VANCOUVER BC transaction dated September 12, 2026 and records the supplier, the items, GST of $2.81 and PST of $3.93 on it without changing its date or total. The entry waits in Stage for the owner to confirm."
+            },
+            {
+              "description": "Lists tax deadlines for a sole proprietorship.",
+              "prompt": "What tax deadlines does Sandpiper Demo Consulting have over the next 12 months?",
+              "tools_triggered": "list_corporations, list_deadlines",
+              "expected_behavior": "Lists Sandpiper Demo Consulting's deadlines over the next 12 months, each with its due date and what it is, such as the T1 return with the T2125 and its GST/HST returns, and does not claim to file anything."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Paying a bill is outside Ledg: it records and reports, and cannot move money. Expected: the assistant says it cannot make payments, calls no write tool, and nothing changes.",
+              "prompt": "Pay the September 12 Staples bill for Fireweed Demo Studio Inc. from the business chequing account."
+            },
+            {
+              "description": "Filing with a government is not available in Ledg. Expected: the assistant says it cannot file returns, may offer the GST/HST figures from the books to prepare with, and calls no write tool.",
+              "prompt": "File Fireweed Demo Studio Inc.'s GST/HST return for the third quarter of 2026 with the CRA."
+            },
+            {
+              "description": "Ledg has no tool that deletes transactions; its only removal takes back out one bank statement added by mistake, after a preview, and keeps the lines so they can be put back. Expected: the assistant says it cannot delete transactions, calls no write tool, and nothing changes.",
+              "prompt": "Delete all of Fireweed Demo Studio Inc.'s 2026 transactions."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Ledg sells nothing and takes no payments in ChatGPT or Codex, and it cannot move money."
+      },
+      "publication": {
+        "countries": ["CA"],
+        "release_notes": "First release of Ledg in ChatGPT and Codex. Ask about sales, expenses, GST/HST and PST collected, balances and tax deadlines; save receipts and link them to bank transactions; set categories; and add bank statement lines. Entries it prepares wait in Stage until you confirm them in Ledg."
+      }
+    }
+  }
+}
