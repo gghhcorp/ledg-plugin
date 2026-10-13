@@ -81,19 +81,20 @@
           ],
           "negative": [
             {
-              "description": "Paying a bill is outside Ledg: it records and reports, and cannot move money. Expected: the assistant says it cannot make payments, calls no write tool, and nothing changes.",
-              "prompt": "Pay the September 12 Staples bill for Fireweed Demo Studio Inc. from the business chequing account."
+              "description": "A general tax question that needs no books. Expected: the assistant answers from general knowledge and does not use Ledg.",
+              "prompt": "What is the difference between GST and HST in Canada?"
             },
             {
-              "description": "Filing with a government is not available in Ledg. Expected: the assistant says it cannot file returns, may offer the GST/HST figures from the books to prepare with, and calls no write tool.",
-              "prompt": "File Fireweed Demo Studio Inc.'s GST/HST return for the third quarter of 2026 with the CRA."
+              "description": "Moving money is outside Ledg, which records and reports and never moves money. Expected: the assistant says it cannot make a transfer and does not use Ledg.",
+              "prompt": "Transfer $500 from my chequing account to my savings account."
             },
             {
-              "description": "Ledg has no tool that deletes transactions; its only removal takes back out one bank statement added by mistake, after a preview, and keeps the lines so they can be put back. Expected: the assistant says it cannot delete transactions, calls no write tool, and nothing changes.",
-              "prompt": "Delete all of Fireweed Demo Studio Inc.'s 2026 transactions."
+              "description": "Writing to a customer is not something Ledg does: it sends no invoices and no email. Expected: the assistant drafts the email itself and does not use Ledg.",
+              "prompt": "Write a short email reminding a client that their invoice is two weeks overdue."
             }
           ]
         },
+        "demo_recording_url": "https://ledg.ca/review/ledg-chatgpt-demo-2026-10-12.mp4",
         "commerce": false,
         "commerce_description": "Ledg sells nothing and takes no payments in ChatGPT or Codex, and it cannot move money."
       },
