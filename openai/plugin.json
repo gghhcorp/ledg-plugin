@@ -2,14 +2,14 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ledg",
   "version": "1.0.0",
-  "description": "Canadian bookkeeping with your AI agents: ask about your books, save receipts and prepare categories and bank statement lines for you to confirm in Stage, and, with a separate settings permission you approve, update your business settings.",
+  "description": "Canadian bookkeeping with your AI agents: ask about your books, save receipts and prepare categories and bank statement lines for you to confirm in Stage, and, with the settings permission named on Ledg's consent screen, update your business settings.",
   "author": {
-    "name": "ledg",
+    "name": "Ledg",
     "email": "info@ledg.ca",
     "url": "https://ledg.ca"
   },
   "homepage": "https://ledg.ca/connect-ai",
-  "repository": "https://github.com/gghhcorp/ledg-plugin",
+  "repository": "https://github.com/ppletc-works/ledg-plugin",
   "license": "MIT",
   "keywords": ["bookkeeping", "accounting", "canada", "gst", "receipts"],
   "extensions": {
@@ -17,7 +17,7 @@
       "interface": {
         "displayName": "Ledg",
         "shortDescription": "Canadian small business books",
-        "longDescription": "Ledg is bookkeeping for Canadian solo businesses and small corporations. Connect your Ledg account to ask about your books and to prepare the everyday work that keeps them current.\n\nAsk about sales, expenses, GST/HST and PST collected, account balances, transactions by date, amount or supplier, entries still waiting for a category, and upcoming tax deadlines. For a business that is not incorporated, you can also see a T2125 preview built from confirmed entries. Figures such as the T2125 preview are worked out from your books by fixed rules; they are not tax advice, and you or your accountant decide what to claim.\n\nPrepare work for your review: save receipts, invoices and bills so Ledg links each one to its bank transaction, record a purchase you made with your own money, add a receipt's supplier, tax and items to a transaction, set categories, record money between you and the business as personal, and add the lines of a bank or credit card statement after Ledg checks them against the opening and closing balances printed on it. Entries prepared this way wait in Stage, Ledg's review queue, and count toward your statements and sales tax totals only after you confirm them in Ledg. A saved receipt waits for its bank transaction and is linked to it when it arrives.\n\nWith a separate settings permission you approve on Ledg's consent screen, it can also update business settings such as province, year end and sales tax registration, and set a revenue goal. Those changes apply right away, as if you made them in Ledg.\n\nLedg cannot confirm an entry for you, move money, or file anything with the CRA or a province.\n\nRequires a Ledg account with AI agent access for your business.",
+        "longDescription": "Ledg is bookkeeping for Canadian solo businesses and small corporations. Connect your Ledg account to ask about your books and to prepare the everyday work that keeps them current.\n\nAsk about sales, expenses, GST/HST and PST collected, account balances, transactions by date, amount or supplier, entries still waiting for a category, and upcoming tax deadlines. For a business that is not incorporated, you can also see a T2125 preview built from confirmed entries. Figures such as the T2125 preview are worked out from your books by fixed rules; they are not tax advice, and you or your accountant decide what to claim.\n\nPrepare work for your review: save receipts, invoices and bills so Ledg links each one to its bank transaction, record a purchase you made with your own money, add a receipt's supplier, tax and items to a transaction, set categories, record money between you and the business as personal, and add the lines of a bank or credit card statement after Ledg checks them against the opening and closing balances printed on it. Entries prepared this way wait in Stage, Ledg's review queue, and count toward your statements and sales tax totals only after you confirm them in Ledg. A saved receipt waits for its bank transaction and is linked to it when it arrives.\n\nWith the settings permission, which Ledg's consent screen lists on its own line, it can also update business settings such as province, year end and sales tax registration, set a revenue goal and, for a business that is not incorporated, update the T2125 details you keep in Ledg, such as kilometres, home office and your other income. Those changes apply right away, as if you made them in Ledg.\n\nLedg cannot confirm an entry for you, move money, or file anything with the CRA or a province.\n\nRequires a Ledg account with AI agent access for your business.",
         "developerName": "PPLETC WORKS INC.",
         "category": "Finance",
         "capabilities": [
@@ -52,7 +52,7 @@
               "description": "Answers a sales question from confirmed entries only.",
               "prompt": "How much did Fireweed Demo Studio Inc. make in sales in August 2026, and how much GST/HST did it collect?",
               "tools_triggered": "list_corporations, get_sales, get_sales_tax_collected",
-              "expected_behavior": "Gives Fireweed Demo Studio Inc.'s total sales for August 1 to 31, 2026 and the GST/HST collected on them, both from confirmed entries only, says that entries still waiting in Stage are not counted, and changes nothing in the books."
+              "expected_behavior": "Gives Fireweed Demo Studio Inc.'s total sales for August 1 to 31, 2026 and the GST/HST collected on them, both from confirmed entries only, and changes nothing in the books."
             },
             {
               "description": "Lists entries that still need a category without changing anything.",
@@ -64,7 +64,7 @@
               "description": "Sets a category on one entry waiting in Stage.",
               "prompt": "In Fireweed Demo Studio Inc., put the September 18, 2026 Uber charge under Travel.",
               "tools_triggered": "list_corporations, find_transactions, list_categories, categorize_entries",
-              "expected_behavior": "Finds the $27.40 UBER *TRIP entry dated September 18, 2026, sets its category to Travel from Ledg's category list, and says the entry waits in Stage until the owner confirms it in Ledg. Its date and amount do not change."
+              "expected_behavior": "Finds the $27.40 UBER *TRIP entry dated September 18, 2026, sets its category to Travel from Ledg's category list, or says it is already Travel, and says the entry waits in Stage until the owner confirms it in Ledg. Its date and amount do not change."
             },
             {
               "description": "Adds a receipt's details to a transaction already in the books.",

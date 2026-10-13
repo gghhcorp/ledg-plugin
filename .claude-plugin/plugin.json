@@ -2,14 +2,14 @@
   "name": "ledg",
   "displayName": "Ledg",
   "version": "1.0.0",
-  "description": "Canadian bookkeeping with your AI agents: ask about your books, save receipts and prepare categories and bank statement lines for you to confirm in Stage, and, with a separate settings permission you approve, update your business settings.",
+  "description": "Canadian bookkeeping with your AI agents: ask about your books, save receipts and prepare categories and bank statement lines for you to confirm in Stage, and, with the settings permission named on Ledg's consent screen, update your business settings.",
   "author": {
-    "name": "ledg",
+    "name": "Ledg",
     "url": "https://ledg.ca",
     "email": "info@ledg.ca"
   },
   "homepage": "https://ledg.ca/connect-ai",
-  "repository": "https://github.com/gghhcorp/ledg-plugin",
+  "repository": "https://github.com/ppletc-works/ledg-plugin",
   "license": "MIT",
   "keywords": ["bookkeeping", "accounting", "canada", "gst", "receipts"],
   "icon": "./assets/ledg-icon.png",

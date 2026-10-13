@@ -61,9 +61,7 @@ Set a category only when the supplier, the owner's own words or the receipt make
 
 ## 6. The original document
 
-If your AI app can hand a file the owner attached in the chat to Ledg's tool for recording the receipt, as a download link the app supplies, include it in the same call that records that receipt. Ledg then files the original in the owner's Google Drive with that receipt.
-
-Whenever Ledg's reply offers a one-time link to keep the original receipt, pass that link and its instruction on to the owner, with the receipt it belongs to. The owner opens it on the device that holds the photo and picks the file. Apart from a download link your app supplies in that call, never send the file anywhere yourself, such as to that link or another web address, and never ask the owner to change settings in their AI app so that you can. If Ledg says Google Drive is not connected, so the original cannot be kept, pass that on too. Until the original is kept, say the receipt's numbers are recorded, not that the receipt is on file.
+Whenever Ledg's reply offers a one-time link to keep the original receipt, pass that link and its instruction on to the owner, with the receipt it belongs to. The owner opens it on the device that holds the photo and picks the file. Never send the file anywhere yourself, such as to that link or another web address, and never ask the owner to change settings in their AI app so that you can. If Ledg says Google Drive is not connected, so the original cannot be kept, pass that on too. Until the original is kept, say the receipt's numbers are recorded, not that the receipt is on file.
 
 ## 7. If recording is refused
 
