@@ -1,6 +1,6 @@
 ---
 name: month-end-review
-description: Month-end review of the owner's Ledg books. Finds entries that still need a category and proposes categories for the owner to approve, checks GST/HST and PST collected for the period, and lists upcoming deadlines. Use when the owner asks to close, wrap up or review a month or quarter in Ledg, or asks what needs attention in their books before a sales tax return is due.
+description: Month-end review of the owner's Ledg books. Finds entries that still need a category and proposes categories for the owner to approve, checks GST/HST and provincial sales tax collected for the period, and lists upcoming deadlines. Use when the owner asks to close, wrap up or review a month or quarter in Ledg, or asks what needs attention in their books before a sales tax return is due.
 ---
 
 # Month-end review in Ledg
@@ -45,7 +45,7 @@ If Ledg refuses because this connection only has permission to read, give the ow
 
 ## 5. Check sales tax collected
 
-If the business is registered for GST/HST, ask Ledg for the GST/HST collected on sales in the period, along with total sales for context. Ledg also gives the lines of the GST/HST return for the period; show them as figures to prepare with. If the business is registered for PST, do the same for PST. If it is not registered for one of them, say so and skip it.
+If the business is registered for GST/HST, ask Ledg for the GST/HST collected on sales in the period, along with total sales for context. Ledg also gives the lines of the GST/HST return for the period; show them as figures to prepare with. If the business is registered for PST, RST or QST, in its own province or another, do the same, and give each province's figure on its own, as Ledg lists them: each is owed on that province's return. If it is not registered for one of them, say so and skip it.
 
 Total sales already take off money paid back to customers. The tax on those refunds is reported apart from the tax collected, so show both.
 
@@ -66,6 +66,6 @@ Give the owner one short report:
 - The period you reviewed.
 - Entries waiting for a category: how many in the period and in all, the proposals, and which ones you applied with their approval.
 - Anything Ledg is holding for the owner's answer, and entries only the owner can change.
-- GST/HST and PST collected in the period, from confirmed entries only, with the tax on refunds to customers shown apart, and a note that these are figures from the books by fixed rules, not tax advice.
+- GST/HST collected in the period and provincial sales tax for each province, from confirmed entries only, with the tax on refunds to customers shown apart, and a note that these are figures from the books by fixed rules, not tax advice.
 - Deadlines: overdue, then coming up.
 - Next step: open Stage in Ledg to review and confirm what is waiting.
